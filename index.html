@@ -697,9 +697,9 @@
     <!-- 300 روپے فیس اور پیمنٹ -->
     <section id="membershipSection" class="membership-section">
       <h2 style="color: #ffd54f;">مکمل رسائی کے لیے ممبرشپ</h2>
-      <p style="margin-top: 8px; color: #ddd;">پہلے 300 روپے کی ادائیگی کریں، پھر کتابیں کھولنے کا آپشن آئے گا</p>
+      <p style="margin-top: 8px; color: #ddd;">ادائیگی کی تفصیل دیکھیں، اس نمبر پر 300 روپے بھیجیں، اسکرین شاٹ دیں اور ڈن کریں</p>
 
-      <button class="btn-gold" onclick="openPayment()">300 روپے ادائیگی کی تفصیل دیکھیں</button>
+      <button type="button" class="btn-gold" onclick="openPayment()">300 روپے ادائیگی کی تفصیل دیکھیں</button>
 
       <div id="paymentPanel" class="payment-panel">
         <h3 style="color: #ffd54f;">ادائیگی کے اکاؤنٹس (300 روپے)</h3>
@@ -717,13 +717,23 @@
         </div>
 
         <div class="confirm-box">
-          <button class="btn-gold" onclick="completePaymentStep()">300 روپے کی ادائیگی کر لی</button>
-          <button class="btn-lock-test" onclick="resetLockForTest()">دوبارہ لاک کریں</button>
+          <label for="paymentSsInput"><strong>ادائیگی کا اسکرین شاٹ (لازمی):</strong></label>
+          <input id="paymentSsInput" type="file" accept="image/*" style="margin: 8px 0 10px; display: block; color: #ddd;" />
+
+          <input
+            id="paymentRefInput"
+            class="input-field"
+            type="text"
+            placeholder="اسکرین شاٹ / ٹرانزیکشن میں موجود نمبر (03074948312) لکھیں"
+          />
+
+          <button type="button" class="btn-gold" onclick="submitPaymentDone()">ڈن</button>
+          <button type="button" class="btn-lock-test" onclick="resetLockForTest()">دوبارہ لاک کریں</button>
           <div id="statusMsg" class="status-msg"></div>
 
           <div id="openBooksOption" class="open-books-option">
-            <p style="color: #9bf6b8; font-weight: bold;">ادائیگی ہو گئی! اب آپ بکس کھول سکتے ہیں:</p>
-            <button class="btn-open-books" onclick="unlockAllFiveBooks()">اب بکس کھولیں</button>
+            <p style="color: #9bf6b8; font-weight: bold;">تصدیق مکمل ہو گئی! اب آپ بکس کھول سکتے ہیں:</p>
+            <button type="button" class="btn-open-books" onclick="unlockAllFiveBooks()">اب بکس کھولیں</button>
           </div>
         </div>
       </div>
@@ -733,7 +743,7 @@
     <section id="booksSection" class="topics-box">
       <h2>منتخب 5 کتابیں</h2>
       <div id="lockNotice" class="lock-notice">
-        پہلے 300 روپے کی ادائیگی کریں اور <strong>300 روپے کی ادائیگی کر لی</strong> دبا کر <strong>اب بکس کھولیں</strong> پر ٹچ کریں۔
+        کتابیں لاک ہیں! پہلے <strong>300 روپے ادائیگی کی تفصیل دیکھیں</strong> پر ٹچ کریں، نمبر <strong>0307-4948312</strong> پر ادائیگی کر کے اسکرین شاٹ دیں اور <strong>ڈن</strong> دبائیں۔
       </div>
 
       <div class="books-3d-grid">
@@ -782,7 +792,7 @@
       <div id="bookReaderOverlay" class="book-reader-overlay">
         <div class="book-top-bar">
           <h3 id="activeBookHeading">عورت</h3>
-          <button class="ctrl-btn" onclick="closeBookReader()">✕</button>
+          <button type="button" class="ctrl-btn" onclick="closeBookReader()">✕</button>
         </div>
 
         <div id="singlePageBox"></div>
@@ -791,7 +801,7 @@
           <h4 id="feedbackHeading">فیڈبیک</h4>
           <input id="fbNameInput" class="input-field" type="text" placeholder="آپ کا نام" />
           <textarea id="fbTextInput" class="textarea-field" placeholder="اس کتاب کے بارے میں اپنا فیڈبیک لکھیں..."></textarea>
-          <button class="ctrl-btn" onclick="addBookFeedback()">فیڈبیک پوسٹ کریں</button>
+          <button type="button" class="ctrl-btn" onclick="addBookFeedback()">فیڈبیک پوسٹ کریں</button>
           <div id="feedbackList" class="feedback-list"></div>
         </div>
       </div>
@@ -804,7 +814,7 @@
       <p style="color: #e6dcef; margin-top: 6px;">
         اپنی تحریر، کہانی یا الفاظ 500 روپے میں پوسٹ کروائیں
       </p>
-      <button class="btn-gold" onclick="toggleStoryForm()">500 روپے میں پوسٹ کروائیں</button>
+      <button type="button" class="btn-gold" onclick="toggleStoryForm()">500 روپے میں پوسٹ کروائیں</button>
 
       <div id="storySubmitForm" class="story-submit-form">
         <h3 style="color: #ffd54f; margin-bottom: 12px;">اپنی کہانی / اپنے الفاظ جمع کروائیں (500 روپے)</h3>
@@ -834,8 +844,8 @@
 
         <label for="storySsInput"><strong>500 روپے ادائیگی کا اسکرین شاٹ:</strong></label>
         <input id="storySsInput" type="file" accept="image/*" style="margin: 8px 0 14px; display: block; color: #ddd;" />
-        <button class="btn-gold" onclick="submitCustomStory()">درخواست جمع کروائیں</button>
-        <button class="btn-wa" onclick="sendScreenshotWhatsApp('500')">WhatsApp پر اسکرین شاٹ بھیجیں</button>
+        <button type="button" class="btn-gold" onclick="submitCustomStory()">درخواست جمع کروائیں</button>
+        <button type="button" class="btn-wa" onclick="sendScreenshotWhatsApp('500')">WhatsApp پر اسکرین شاٹ بھیجیں</button>
         <div id="storyStatusMsg" class="status-msg"></div>
       </div>
     </section>
@@ -843,7 +853,8 @@
 
   <script>
     const WHATSAPP_NUMBER = "923074948312";
-    const UNLOCK_STORAGE_KEY = "ayat_syed_5books_unlocked_v3";
+    const REQUIRED_PHONE_CLEAN = "03074948312";
+    const UNLOCK_STORAGE_KEY = "ayat_syed_5books_unlocked_v4";
     const FEEDBACK_STORAGE_KEY = "ayat_syed_book_feedbacks_v1";
     const bookStage = document.getElementById("bookStage");
 
@@ -862,7 +873,7 @@
       const status = document.getElementById("statusMsg");
       const openOpt = document.getElementById("openBooksOption");
       status.style.display = "block";
-      status.textContent = "پانچوں کتابیں ان لاک ہیں۔";
+      status.textContent = "تصدیق ہو چکی ہے، بکس کھولنے کا آپشن تیار ہے۔";
       openOpt.style.display = "block";
     }
 
@@ -876,14 +887,35 @@
 
     function openPayment() {
       const panel = document.getElementById("paymentPanel");
-      panel.style.display = panel.style.display === "block" ? "none" : "block";
+      const isVisible = window.getComputedStyle(panel).display === "block";
+      panel.style.display = isVisible ? "none" : "block";
+      if (!isVisible) {
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     }
 
-    function completePaymentStep() {
+    function submitPaymentDone() {
       const status = document.getElementById("statusMsg");
       const openOpt = document.getElementById("openBooksOption");
+      const ssFile = document.getElementById("paymentSsInput").files[0];
+      const refRaw = document.getElementById("paymentRefInput").value || "";
+      const refDigits = refRaw.replace(/[^0-9]/g, "");
+
       status.style.display = "block";
-      status.textContent = "300 روپے کی ادائیگی مکمل ہو گئی۔ اب بکس کھولنے کا آپشن نیچے آ گیا ہے۔";
+
+      if (!ssFile) {
+        openOpt.style.display = "none";
+        status.textContent = "براہ کرم پہلے ادائیگی کا اسکرین شاٹ اپ لوڈ کریں۔";
+        return;
+      }
+
+      if (!refDigits.includes(REQUIRED_PHONE_CLEAN)) {
+        openOpt.style.display = "none";
+        status.textContent = "غلط یا نامکمل تفصیل! اسکرین شاٹ والا درست نمبر 03074948312 لازمی لکھیں۔";
+        return;
+      }
+
+      status.textContent = `اسکرین شاٹ (${ssFile.name}) اور نمبر 03074948312 کی تصدیق ہو گئی۔ اب بکس کھولنے کا آپشن نیچے آ گیا ہے۔`;
       openOpt.style.display = "block";
     }
 
@@ -903,6 +935,8 @@
       localStorage.removeItem(UNLOCK_STORAGE_KEY);
       closeBookReader();
       updateLockBadges();
+      document.getElementById("paymentSsInput").value = "";
+      document.getElementById("paymentRefInput").value = "";
       document.getElementById("openBooksOption").style.display = "none";
       const status = document.getElementById("statusMsg");
       status.style.display = "block";
@@ -929,4 +963,47 @@
 
 عورت کے قدم چومنے کی خوبصورتی تب ہے جب وہ محبت حلال رشتے میں ہو، جہاں چاہت کے ساتھ وفاداری، قربت کے ساتھ احترام اور ہر لمس کے ساتھ رضامندی بھی موجود ہو۔
 
-کیونکہ عورت صرف چاہے
+کیونکہ عورت صرف چاہے جانے کے قابل نہیں، عزت سے نبھائے جانے کے قابل بھی ہے۔ ❤️‍🔥
+
+آیت سیّد ᥫ᭡`
+        },
+        {
+          topic: "عزت سب سے قیمتی تحفہ",
+          caption: `عزت عورت کو دیے جانے والے تحفوں میں سب سے قیمتی تحفہ ہوتی ہے، کیونکہ زیورات اُس کے حسن کو سنوار سکتے ہیں، پھول اُس کے چہرے پر مسکراہٹ لا سکتے ہیں اور قیمتی تحائف اُس کے دل کو خوش کر سکتے ہیں، مگر عزت اُس کے پورے وجود کو محبت اور تحفظ کا احساس عطا کرتی ہے۔ ❤️🌹
+
+عورت کو صرف خوبصورت الفاظ سے نہیں، اپنے رویّے سے بھی یہ احساس دلانا ضروری ہے کہ وہ کتنی اہم ہے۔ اُس کی بات کو اہمیت دینا، اُس کے جذبات کا خیال رکھنا، اُس کی رائے کا احترام کرنا، اُس کی حدود کو سمجھنا اور سب کے سامنے اُس کی عزت کا خیال رکھنا ہی اصل محبت کی پہچان ہے۔
+
+محبت کے بڑے بڑے دعوے کرنا آسان ہے، مگر کسی عورت کے اعتماد کو کبھی ٹھیس نہ پہنچانا، اُس کی غیر موجودگی میں بھی اُس کے احترام کی حفاظت کرنا اور اختلاف کے باوجود اُس کے ساتھ شائستگی سے پیش آنا ہر کسی کے بس کی بات نہیں۔ 🫀
+
+کیونکہ عورت کو ہمیشہ مہنگے تحائف کی ضرورت نہیں ہوتی، کبھی کبھی اُس کے لیے ایک ایسا شخص ہی کافی ہوتا ہے جس کے ساتھ وہ اپنی ذات، اپنی سوچ اور اپنے جذبات سمیت خود کو محفوظ محسوس کر سکے۔
+
+یاد رکھیے! عورت کو پھول دینا خوبصورت عمل ہے، مگر اُس کی عزت کو کبھی مرجھانے نہ دینا اُس سے کہیں زیادہ خوبصورت محبت ہے۔ ❤️‍🩹
+
+آیت سیّد ᥫ᭡`
+        }
+      ],
+      "محبت": [
+        {
+          topic: "قربت، اعتماد اور دلکشی",
+          caption: `عورت بہت دلکش ہے، اُس کا لمس، اُس کی قربت اور اُس کا حسن۔۔۔ سب اپنی جگہ ایک الگ ہی کیفیت رکھتے ہیں۔ ❤️‍🔥🌹
+اُس کے وجود میں نہ جانے کیسی کشش ہے کہ اُس کی موجودگی عام سے لمحوں کو بھی خاص بنا دیتی ہے۔ اُس کے ہاتھوں کی نرمی، اُس کے لہجے کی مٹھاس، اُس کی آنکھوں کی شرارت اور اُس کے قریب ہونے کا احساس، دل میں ایسی خوشی جگاتا ہے جسے لفظوں میں سمیٹنا آسان نہیں۔
+عورت کی قربت صرف فاصلے مٹانے کا نام نہیں، یہ دو دلوں کے درمیان اعتماد، اپنائیت اور محبت کے گہرے احساس کا نام ہے۔ جب وہ کسی اپنے کے قریب ہوتی ہے تو اُس کا لمس بھی محبت کی زبان بولتا ہے، اُس کی خاموشی بھی ہزاروں باتیں کہتی ہے اور اُس کی مسکراہٹ بھی دل کو بےاختیار اپنا بنا لیتی ہے۔ 🫀
+مگر عورت کا حسن صرف اُس کے جسم تک محدود نہیں؛ اُس کی شخصیت، اُس کی سوچ، اُس کی نزاکت، اُس کا وقار اور اُس کے جذبات بھی اُتنے ہی دلکش ہیں۔ جو شخص اُس کے وجود کو محبت کے ساتھ اُس کی عزت سمیت قبول کرتا ہے، وہی اُس کی خوبصورتی کی اصل گہرائی سمجھ سکتا ہے۔
+عورت کی قربت ایک حسین احساس ہے، مگر اُس کی رضامندی، اُس کا اعتماد اور اُس کی عزت اُس احساس کو بےمثال بنا دیتے ہیں۔ ❤️
+آیت سیّد ᥫ᭡`
+        },
+        {
+          topic: "داستانِ حسن",
+          caption: `اپنی محبوبہ سے یہ مت کہنا کہ وہ حسین ہے، بلکہ اُسے یہ احساس دلانا کہ اُس کے وجود کا ہر ذرّہ اپنی جگہ ایک الگ داستانِ حسن رکھتا ہے۔ اُس کی تربیت، اُس کا اندازِ گفتگو، اُس کے لہجے کی نرمی، اُس کی مسکراہٹ اور اُس کے برتاؤ میں ایسی دلکشی ہے جو محض دیکھنے سے نہیں، محسوس کرنے سے سمجھ آتی ہے۔ ❤️🌹
+
+کیونکہ حسن صرف چہرے کے خدوخال کا نام نہیں ہوتا، کبھی کسی کی گفتگو انسان کو اپنا اسیر بنا لیتی ہے، کبھی اُس کا شائستہ انداز دل میں جگہ بنا لیتا ہے، اور کبھی اُس کی چھوٹی چھوٹی عادتیں محبت کو ایک نئی معنویت دے دیتی ہیں۔
+
+تم اپنی محبوبہ کو بتاؤ کہ اُس کی خوبصورتی صرف اُس کے چہرے پر نہیں ٹھہرتی، بلکہ اُس کے کردار، اُس کی سوچ، اُس کے سلیقے اور اُس کی شخصیت کے ہر پہلو سے جھلکتی ہے۔ وہ جب بولتی ہے تو لفظ بھی خوبصورت لگنے لگتے ہیں، جب مسکراتی ہے تو ماحول میں بہار اتر آتی ہے، اور جب خاموش رہتی ہے تو اُس کی خاموشی بھی کسی مکمل نظم جیسی محسوس ہوتی ہے۔ 🫀
+
+اُسے صرف حسین مت کہو، اُسے یہ بتاؤ کہ اُس کی پوری ذات تمہارے لیے حسن، تہذیب اور محبت کا ایسا امتزاج ہے جس کی مثال تمہیں کہیں اور نہیں ملتی۔ ❤️‍🔥
+
+آیت سیّد ᥫ᭡`
+        },
+        {
+          topic: "ہر دھڑکن میں آباد",
+          caption: `اگر میں پوری کی پوری زمین کا چکر بھی لگا لوں، اللہ گواہ ہے، مجھے کوئی بھی چیز تم سے غافل نہیں کر سکتی۔۔
