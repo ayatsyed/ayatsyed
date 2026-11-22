@@ -288,6 +288,17 @@
       margin-bottom: 8px;
     }
 
+    .lock-notice {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: rgba(255, 193, 7, 0.12);
+      border: 1px solid rgba(255, 213, 79, 0.35);
+      color: #ffe082;
+      font-size: 0.98rem;
+      display: none;
+    }
+
     .books-3d-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
@@ -634,7 +645,7 @@
     <!-- 300 روپے فیس اور پیمنٹ -->
     <section id="membershipSection" class="membership-section">
       <h2 style="color: #ffd54f;">مکمل رسائی کے لیے ممبرشپ</h2>
-      <p style="margin-top: 8px; color: #ddd;">صرف 300 روپے میں تمام ٹاپکس تک رسائی حاصل کریں</p>
+      <p style="margin-top: 8px; color: #ddd;">صرف 300 روپے ادا کر کے اسکرین شاٹ جمع کروائیں اور کتابیں کھولیں</p>
 
       <button class="btn-gold" onclick="openPayment()">300 روپے ادائیگی کی تفصیل دیکھیں</button>
 
@@ -654,7 +665,7 @@
         </div>
 
         <div class="upload-area">
-          <label for="ssInput"><strong>ادائیگی کے بعد اسکرین شاٹ یہاں لگائیں:</strong></label>
+          <label for="ssInput"><strong>300 روپے ادائیگی کے بعد اسکرین شاٹ یہاں لگائیں:</strong></label>
           <input id="ssInput" type="file" accept="image/*" />
           <button class="btn-gold" onclick="submitScreenshot()">جمع کروائیں</button>
           <button class="btn-wa" onclick="sendScreenshotWhatsApp('300')">WhatsApp پر اسکرین شاٹ بھیجیں</button>
@@ -666,6 +677,9 @@
     <!-- 5 کتابیں -->
     <section class="topics-box">
       <h2>منتخب 5 کتابیں</h2>
+      <div id="lockNotice" class="lock-notice">
+        کتابیں کھولنے کے لیے پہلے 300 روپے ادائیگی کر کے اسکرین شاٹ لگائیں اور <strong>جمع کروائیں</strong> دبائیں۔
+      </div>
 
       <div class="books-3d-grid">
         <div class="card-3d-book" onclick="openBookPages('محبت')">
@@ -770,6 +784,7 @@
   <script>
     const WHATSAPP_NUMBER = "923074948312";
     const bookStage = document.getElementById("bookStage");
+    let is300Paid = false;
 
     window.addEventListener("scroll", () => {
       if (window.scrollY > 120) {
@@ -787,15 +802,20 @@
     function submitScreenshot() {
       const input = document.getElementById("ssInput");
       const status = document.getElementById("statusMsg");
+      const notice = document.getElementById("lockNotice");
       status.style.display = "block";
+
       if (!input.files || input.files.length === 0) {
-        status.textContent = "براہ کرم پہلے اسکرین شاٹ منتخب کریں یا WhatsApp پر بھیجیں۔";
+        status.textContent = "براہ کرم پہلے 300 روپے ادائیگی کا اسکرین شاٹ منتخب کریں۔";
         return;
       }
+
+      is300Paid = true;
+      notice.style.display = "none";
       status.textContent =
         "اسکرین شاٹ (" +
         input.files[0].name +
-        ") منتخب کر لیا گیا ہے۔ تصدیق کے لیے WhatsApp بٹن دبائیں۔";
+        ") جمع کروا دیا گیا ہے۔ اب آپ کتابیں کھول سکتے ہیں۔";
     }
 
     function sendScreenshotWhatsApp(amount) {
@@ -912,6 +932,15 @@
     let currentPageIndex = 0;
 
     function openBookPages(bookName) {
+      if (!is300Paid) {
+        const notice = document.getElementById("lockNotice");
+        const panel = document.getElementById("paymentPanel");
+        notice.style.display = "block";
+        panel.style.display = "block";
+        document.getElementById("membershipSection").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
       currentBookName = bookName;
       currentPageIndex = 0;
       document.getElementById("activeBookHeading").textContent = bookName;
