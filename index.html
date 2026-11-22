@@ -253,16 +253,10 @@
       margin-bottom: 6px;
     }
 
-    .upload-area {
-      margin-top: 18px;
-      padding-top: 16px;
+    .confirm-box {
+      margin-top: 16px;
+      padding-top: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .upload-area input[type="file"] {
-      margin-top: 10px;
-      color: #ddd;
-      display: block;
     }
 
     .status-msg {
@@ -664,11 +658,8 @@
           </div>
         </div>
 
-        <div class="upload-area">
-          <label for="ssInput"><strong>اسکرین شاٹ (اختیاری — نہ بھی دیں تو بھی مسئلہ نہیں):</strong></label>
-          <input id="ssInput" type="file" accept="image/*" />
-          <button class="btn-gold" onclick="confirm300Payment()">300 روپے ادائیگی مکمل کریں</button>
-          <button class="btn-wa" onclick="sendScreenshotWhatsApp('300')">WhatsApp پر اسکرین شاٹ بھیجیں</button>
+        <div class="confirm-box">
+          <button class="btn-gold" onclick="confirm300Payment()">300 روپے ادائیگی مکمل کر لی — کتابیں کھولیں</button>
           <div id="statusMsg" class="status-msg"></div>
         </div>
       </div>
@@ -808,7 +799,6 @@
     }
 
     function confirm300Payment() {
-      const input = document.getElementById("ssInput");
       const status = document.getElementById("statusMsg");
       const notice = document.getElementById("lockNotice");
 
@@ -816,16 +806,7 @@
       localStorage.setItem(UNLOCK_STORAGE_KEY, "true");
       notice.style.display = "none";
       status.style.display = "block";
-
-      if (input.files && input.files.length > 0) {
-        status.textContent =
-          "300 روپے ادائیگی مکمل ہو گئی (" +
-          input.files[0].name +
-          ")۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
-      } else {
-        status.textContent =
-          "300 روپے ادائیگی مکمل ہو گئی۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
-      }
+      status.textContent = "300 روپے ادائیگی مکمل ہو گئی۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
     }
 
     function sendScreenshotWhatsApp(amount) {
