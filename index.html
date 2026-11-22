@@ -207,19 +207,6 @@
       filter: brightness(1.08);
     }
 
-    .btn-lock-test {
-      background: #2b2436;
-      color: #ffe082;
-      border: 1px solid rgba(255, 213, 79, 0.35);
-      padding: 10px 18px;
-      font-size: 0.92rem;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 12px;
-      margin-right: 8px;
-    }
-
     .btn-wa {
       background: linear-gradient(90deg, #25d366, #128c7e);
       color: #fff;
@@ -335,7 +322,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       font-weight: bold;
       box-shadow:
         -6px 10px 22px rgba(0, 0, 0, 0.65),
@@ -359,13 +346,6 @@
     .cover-3d .book-title-3d {
       font-size: 1.15rem;
       text-align: center;
-    }
-
-    .book-lock-badge {
-      font-size: 0.85rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.32);
     }
 
     .c-love {
@@ -551,28 +531,16 @@
       padding: 10px 14px;
     }
 
-    .feedback-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
     .feedback-author {
       color: #ffd54f;
       font-weight: bold;
       font-size: 0.92rem;
     }
 
-    .feedback-time {
-      color: #a99bb8;
-      font-size: 0.8rem;
-    }
-
     .feedback-text {
       color: #ece6f5;
       font-size: 0.98rem;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     /* باہر 500 روپے میں اپنی کہانی / اپنے الفاظ پوسٹ کروانے کا سیکشن */
@@ -692,7 +660,6 @@
 
         <div class="confirm-box">
           <button class="btn-gold" onclick="confirm300Payment()">300 روپے ادائیگی مکمل کر لی — کتابیں کھولیں</button>
-          <button class="btn-lock-test" onclick="resetLockForTest()">دوبارہ لاک کریں</button>
           <div id="statusMsg" class="status-msg"></div>
         </div>
       </div>
@@ -702,7 +669,7 @@
     <section class="topics-box">
       <h2>منتخب 5 کتابیں</h2>
       <div id="lockNotice" class="lock-notice">
-        کتابیں لاک ہیں! پہلے 300 روپے ادائیگی مکمل کریں اور <strong>300 روپے ادائیگی مکمل کر لی — کتابیں کھولیں</strong> دبائیں۔
+        پہلے 300 روپے ادائیگی مکمل کریں، اس کے بعد تمام کتابیں ان لاک ہو جائیں گی۔
       </div>
 
       <div class="books-3d-grid">
@@ -710,7 +677,6 @@
           <div class="cover-3d c-love">
             <div class="spine-line"></div>
             <div class="book-title-3d">محبت</div>
-            <span class="book-lock-badge" data-lock-badge>🔒 لاک</span>
           </div>
         </div>
 
@@ -718,7 +684,6 @@
           <div class="cover-3d c-romance">
             <div class="spine-line"></div>
             <div class="book-title-3d">رومانیت</div>
-            <span class="book-lock-badge" data-lock-badge>🔒 لاک</span>
           </div>
         </div>
 
@@ -726,7 +691,6 @@
           <div class="cover-3d c-touch">
             <div class="spine-line"></div>
             <div class="book-title-3d">حدت لمس</div>
-            <span class="book-lock-badge" data-lock-badge>🔒 لاک</span>
           </div>
         </div>
 
@@ -734,7 +698,6 @@
           <div class="cover-3d c-novels">
             <div class="spine-line"></div>
             <div class="book-title-3d">ناولز</div>
-            <span class="book-lock-badge" data-lock-badge>🔒 لاک</span>
           </div>
         </div>
 
@@ -742,7 +705,6 @@
           <div class="cover-3d c-woman">
             <div class="spine-line"></div>
             <div class="book-title-3d">عورت</div>
-            <span class="book-lock-badge" data-lock-badge>🔒 لاک</span>
           </div>
         </div>
       </div>
@@ -812,20 +774,10 @@
 
   <script>
     const WHATSAPP_NUMBER = "923074948312";
-    const UNLOCK_STORAGE_KEY = "ayat_syed_300_unlocked_v2";
-    const FEEDBACK_STORAGE_KEY = "ayat_syed_book_feedbacks_v1";
+    const UNLOCK_STORAGE_KEY = "ayat_syed_300_unlocked";
     const bookStage = document.getElementById("bookStage");
 
     let is300Paid = localStorage.getItem(UNLOCK_STORAGE_KEY) === "true";
-
-    function updateLockBadges() {
-      const badges = document.querySelectorAll("[data-lock-badge]");
-      badges.forEach((b) => {
-        b.textContent = is300Paid ? "🔓 کھلا" : "🔒 لاک";
-      });
-    }
-
-    updateLockBadges();
 
     if (is300Paid) {
       const status = document.getElementById("statusMsg");
@@ -852,20 +804,9 @@
 
       is300Paid = true;
       localStorage.setItem(UNLOCK_STORAGE_KEY, "true");
-      updateLockBadges();
       notice.style.display = "none";
       status.style.display = "block";
       status.textContent = "300 روپے ادائیگی مکمل ہو گئی۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
-    }
-
-    function resetLockForTest() {
-      is300Paid = false;
-      localStorage.removeItem(UNLOCK_STORAGE_KEY);
-      closeBookReader();
-      updateLockBadges();
-      const status = document.getElementById("statusMsg");
-      status.style.display = "block";
-      status.textContent = "کتابیں دوبارہ لاک کر دی گئی ہیں۔";
     }
 
     function sendScreenshotWhatsApp(amount) {
@@ -970,7 +911,7 @@
       ]
     };
 
-    const defaultFeedbacks = {
+    const bookFeedbacks = {
       "محبت": [],
       "رومانیت": [],
       "حدت لمس": [],
@@ -978,27 +919,11 @@
       "عورت": []
     };
 
-    function loadFeedbacksFromStorage() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY));
-        if (saved && typeof saved === "object") {
-          return { ...defaultFeedbacks, ...saved };
-        }
-      } catch (e) {}
-      return { ...defaultFeedbacks };
-    }
-
-    const bookFeedbacks = loadFeedbacksFromStorage();
-
-    function saveFeedbacksToStorage() {
-      localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(bookFeedbacks));
-    }
-
     let currentBookName = "عورت";
     let currentPageIndex = 0;
 
     function openBookPages(bookName) {
-      if (is300Paid !== true) {
+      if (!is300Paid) {
         const notice = document.getElementById("lockNotice");
         const panel = document.getElementById("paymentPanel");
         notice.style.display = "block";
@@ -1060,11 +985,7 @@
 
       if (!text) return;
 
-      const now = new Date();
-      const time = now.toLocaleDateString("ur-PK") + " — " + now.toLocaleTimeString("ur-PK", { hour: "2-digit", minute: "2-digit" });
-
-      bookFeedbacks[currentBookName].unshift({ name, text, time });
-      saveFeedbacksToStorage();
+      bookFeedbacks[currentBookName].unshift({ name, text });
       nameEl.value = "";
       textEl.value = "";
       renderFeedbacks();
@@ -1078,13 +999,7 @@
       items.forEach((fb) => {
         const div = document.createElement("div");
         div.className = "feedback-item";
-        div.innerHTML = `
-          <div class="feedback-header">
-            <span class="feedback-author">${fb.name}</span>
-            <span class="feedback-time">${fb.time || ""}</span>
-          </div>
-          <div class="feedback-text">${fb.text}</div>
-        `;
+        div.innerHTML = `<div class="feedback-author">${fb.name}</div><div class="feedback-text">${fb.text}</div>`;
         list.appendChild(div);
       });
     }
