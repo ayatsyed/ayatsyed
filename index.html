@@ -944,7 +944,13 @@
     }
 
     function sendScreenshotWhatsApp(amount) {
-      let msg = `السلام علیکم! میں نے ${amount} روپے ادائیگی کر دی ہے، اسکرین شاٹ بھیج رہا/رہی ہوں۔`; if (amount === "500") { const writer = document.getElementById("writerName").value.trim(); const book = document.getElementById("targetBookSelect").value; const title = document.getElementById("storyTitleInput").value.trim(); if (writer \vert{}\vert{} title) { msg += `\nنام: ${writer || "—"}\nکتاب: ${book}\nعنوان: ${title || "—"}`;
+      let msg = `السلام علیکم! میں نے ${amount} روپے ادائیگی کر دی ہے، اسکرین شاٹ بھیج رہا/رہی ہوں۔`;
+      if (amount === "500") {
+        const writer = document.getElementById("writerName").value.trim();
+        const book = document.getElementById("targetBookSelect").value;
+        const title = document.getElementById("storyTitleInput").value.trim();
+        if (writer || title) {
+          msg += `\nنام: ${writer || "—"}\nکتاب: ${book}\nعنوان: ${title || "—"}`;
         }
       }
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -1006,4 +1012,181 @@
         },
         {
           topic: "ہر دھڑکن میں آباد",
-          caption: `اگر میں پوری کی پوری زمین کا چکر بھی لگا لوں، اللہ گواہ ہے، مجھے کوئی بھی چیز تم سے غافل نہیں کر سکتی۔۔
+          caption: `اگر میں پوری کی پوری زمین کا چکر بھی لگا لوں، اللہ گواہ ہے، مجھے کوئی بھی چیز تم سے غافل نہیں کر سکتی۔۔۔ ❤️🫀
+
+تم میرے دل میں اس طرح آباد ہو کہ فاصلے تمہاری موجودگی کو کم نہیں کر سکتے، مصروفیت تمہاری یاد کو مٹا نہیں سکتی، اور دنیا کی کوئی خوبصورتی تمہارے حسنِ احساس کا مقابلہ نہیں کر سکتی۔ میں کسی بھی شہر، کسی بھی ملک، کسی بھی راستے پر چلی جاؤں، میرے اندر ایک جگہ ہمیشہ تمہارے نام سے روشن رہتی ہے۔
+
+تم میری سماعتوں میں دل بن کر دھڑکتے ہو؛ تمہاری آواز میرے اندر ایسی گونج پیدا کرتی ہے جسے خاموشی بھی ختم نہیں کر سکتی۔ کبھی کسی اجنبی کے لہجے میں تمہاری جھلک محسوس ہوتی ہے، کبھی کسی خوبصورت منظر کو دیکھ کر تم یاد آ جاتے ہو، اور کبھی بغیر کسی وجہ کے میرا دل تمہاری طرف کھنچنے لگتا ہے۔ 🌹
+
+تمہیں بھولنے کے لیے شاید پوری دنیا دیکھنی پڑے، مگر پوری دنیا دیکھ لینے کے بعد بھی میرا دل تمہیں ہی دیکھنے کی خواہش کرے گا۔ کیونکہ تم کوئی ایسی یاد نہیں جسے وقت مٹا دے، تم وہ احساس ہو جو وقت کے ساتھ میرے اندر مزید گہرا ہوتا جاتا ہے۔
+
+میں جہاں بھی رہوں، جس راستے پر بھی چلوں، میری روح کا سفر ہمیشہ تمہاری طرف ہی رہے گا؛ کیونکہ تم میرے دل میں نہیں، میری ہر دھڑکن میں آباد ہو۔ ❤️‍🔥
+
+آیت سیّد ᥫ᭡`
+        }
+      ],
+      "رومانیت": [
+        {
+          topic: "رومانیت",
+          caption: ""
+        }
+      ],
+      "حدت لمس": [
+        {
+          topic: "حدت لمس",
+          caption: ""
+        }
+      ],
+      "ناولز": [
+        {
+          topic: "ناولز",
+          caption: ""
+        }
+      ]
+    };
+
+    const defaultFeedbacks = {
+      "محبت": [],
+      "رومانیت": [],
+      "حدت لمس": [],
+      "ناولز": [],
+      "عورت": []
+    };
+
+    function loadFeedbacksFromStorage() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY));
+        if (saved && typeof saved === "object") {
+          return { ...defaultFeedbacks, ...saved };
+        }
+      } catch (e) {}
+      return { ...defaultFeedbacks };
+    }
+
+    const bookFeedbacks = loadFeedbacksFromStorage();
+
+    function saveFeedbacksToStorage() {
+      localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(bookFeedbacks));
+    }
+
+    let currentBookName = "عورت";
+    let currentPageIndex = 0;
+
+    function openBookPages(bookName) {
+      if (is5BooksUnlocked !== true) {
+        const notice = document.getElementById("lockNotice");
+        const panel = document.getElementById("paymentPanel");
+        notice.style.display = "block";
+        panel.style.display = "block";
+        document.getElementById("membershipSection").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      currentBookName = bookName;
+      currentPageIndex = 0;
+      document.getElementById("activeBookHeading").textContent = bookName;
+      document.getElementById("feedbackHeading").textContent = bookName + " — فیڈبیک";
+      document.getElementById("bookReaderOverlay").style.display = "block";
+      renderCurrentPage();
+      renderFeedbacks();
+      document.getElementById("bookReaderOverlay").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function renderCurrentPage() {
+      const pages = booksPagesData[currentBookName] || [];
+      const box = document.getElementById("singlePageBox");
+      box.innerHTML = "";
+
+      if (pages.length === 0) return;
+
+      const pageObj = pages[currentPageIndex];
+      const pageNumber = currentPageIndex + 1;
+
+      const sheet = document.createElement("div");
+      sheet.className = "book-page-sheet";
+      sheet.onclick = flipToNextPage;
+      sheet.innerHTML = `
+        <div class="page-topic-header">
+          <div class="page-topic-title">${pageObj.topic}</div>
+        </div>
+        <div class="page-caption-body">${pageObj.caption}</div>
+        <div class="page-footer-num">${pageNumber}</div>
+      `;
+
+      box.appendChild(sheet);
+    }
+
+    function flipToNextPage() {
+      const pages = booksPagesData[currentBookName] || [];
+      if (pages.length === 0) return;
+      currentPageIndex = (currentPageIndex + 1) % pages.length;
+      renderCurrentPage();
+    }
+
+    function closeBookReader() {
+      document.getElementById("bookReaderOverlay").style.display = "none";
+    }
+
+    function addBookFeedback() {
+      const nameEl = document.getElementById("fbNameInput");
+      const textEl = document.getElementById("fbTextInput");
+      const name = nameEl.value.trim() || "قاری";
+      const text = textEl.value.trim();
+
+      if (!text) return;
+
+      const now = new Date();
+      const time = now.toLocaleDateString("ur-PK") + " — " + now.toLocaleTimeString("ur-PK", { hour: "2-digit", minute: "2-digit" });
+
+      bookFeedbacks[currentBookName].unshift({ name, text, time });
+      saveFeedbacksToStorage();
+      nameEl.value = "";
+      textEl.value = "";
+      renderFeedbacks();
+    }
+
+    function renderFeedbacks() {
+      const list = document.getElementById("feedbackList");
+      const items = bookFeedbacks[currentBookName] || [];
+      list.innerHTML = "";
+
+      items.forEach((fb) => {
+        const div = document.createElement("div");
+        div.className = "feedback-item";
+        div.innerHTML = `
+          <div class="feedback-header">
+            <span class="feedback-author">${fb.name}</span>
+            <span class="feedback-time">${fb.time || ""}</span>
+          </div>
+          <div class="feedback-text">${fb.text}</div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function toggleStoryForm() {
+      const form = document.getElementById("storySubmitForm");
+      form.style.display = form.style.display === "block" ? "none" : "block";
+    }
+
+    function submitCustomStory() {
+      const writer = document.getElementById("writerName").value.trim();
+      const book = document.getElementById("targetBookSelect").value;
+      const title = document.getElementById("storyTitleInput").value.trim();
+      const body = document.getElementById("storyBodyInput").value.trim();
+      const ssFile = document.getElementById("storySsInput").files[0];
+      const status = document.getElementById("storyStatusMsg");
+
+      status.style.display = "block";
+      if (!writer || !title || !body) {
+        status.textContent = "براہ کرم نام، عنوان اور اپنی تحریر/کہانی لکھیں۔";
+        return;
+      }
+
+      status.textContent =
+        `"${title}" (${book}) کی درخواست تیار ہے۔ تصدیق کے لیے WhatsApp پر اسکرین شاٹ بھیجیں۔` +
+        (ssFile ? ` اسکرین شاٹ: ${ssFile.name}` : "");
+    }
+  </script>
+</body>
+</html>
