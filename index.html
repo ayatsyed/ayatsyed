@@ -531,16 +531,28 @@
       padding: 10px 14px;
     }
 
+    .feedback-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
     .feedback-author {
       color: #ffd54f;
       font-weight: bold;
       font-size: 0.92rem;
     }
 
+    .feedback-time {
+      color: #a99bb8;
+      font-size: 0.8rem;
+    }
+
     .feedback-text {
       color: #ece6f5;
       font-size: 0.98rem;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     /* باہر 500 روپے میں اپنی کہانی / اپنے الفاظ پوسٹ کروانے کا سیکشن */
@@ -775,6 +787,7 @@
   <script>
     const WHATSAPP_NUMBER = "923074948312";
     const UNLOCK_STORAGE_KEY = "ayat_syed_300_unlocked";
+    const FEEDBACK_STORAGE_KEY = "ayat_syed_book_feedbacks_v1";
     const bookStage = document.getElementById("bookStage");
 
     let is300Paid = localStorage.getItem(UNLOCK_STORAGE_KEY) === "true";
@@ -810,13 +823,7 @@
     }
 
     function sendScreenshotWhatsApp(amount) {
-      let msg = `السلام علیکم! میں نے ${amount} روپے ادائیگی کر دی ہے، اسکرین شاٹ بھیج رہا/رہی ہوں۔`;
-      if (amount === "500") {
-        const writer = document.getElementById("writerName").value.trim();
-        const book = document.getElementById("targetBookSelect").value;
-        const title = document.getElementById("storyTitleInput").value.trim();
-        if (writer || title) {
-          msg += `\nنام: ${writer || "—"}\nکتاب: ${book}\nعنوان: ${title || "—"}`;
+      let msg = `السلام علیکم! میں نے ${amount} روپے ادائیگی کر دی ہے، اسکرین شاٹ بھیج رہا/رہی ہوں۔`; if (amount === "500") { const writer = document.getElementById("writerName").value.trim(); const book = document.getElementById("targetBookSelect").value; const title = document.getElementById("storyTitleInput").value.trim(); if (writer \vert{}\vert{} title) { msg += `\nنام: ${writer || "—"}\nکتاب: ${book}\nعنوان: ${title || "—"}`;
         }
       }
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -841,192 +848,4 @@
         },
         {
           topic: "عزت سب سے قیمتی تحفہ",
-          caption: `عزت عورت کو دیے جانے والے تحفوں میں سب سے قیمتی تحفہ ہوتی ہے، کیونکہ زیورات اُس کے حسن کو سنوار سکتے ہیں، پھول اُس کے چہرے پر مسکراہٹ لا سکتے ہیں اور قیمتی تحائف اُس کے دل کو خوش کر سکتے ہیں، مگر عزت اُس کے پورے وجود کو محبت اور تحفظ کا احساس عطا کرتی ہے۔ ❤️🌹
-
-عورت کو صرف خوبصورت الفاظ سے نہیں، اپنے رویّے سے بھی یہ احساس دلانا ضروری ہے کہ وہ کتنی اہم ہے۔ اُس کی بات کو اہمیت دینا، اُس کے جذبات کا خیال رکھنا، اُس کی رائے کا احترام کرنا، اُس کی حدود کو سمجھنا اور سب کے سامنے اُس کی عزت کا خیال رکھنا ہی اصل محبت کی پہچان ہے۔
-
-محبت کے بڑے بڑے دعوے کرنا آسان ہے، مگر کسی عورت کے اعتماد کو کبھی ٹھیس نہ پہنچانا، اُس کی غیر موجودگی میں بھی اُس کے احترام کی حفاظت کرنا اور اختلاف کے باوجود اُس کے ساتھ شائستگی سے پیش آنا ہر کسی کے بس کی بات نہیں۔ 🫀
-
-کیونکہ عورت کو ہمیشہ مہنگے تحائف کی ضرورت نہیں ہوتی، کبھی کبھی اُس کے لیے ایک ایسا شخص ہی کافی ہوتا ہے جس کے ساتھ وہ اپنی ذات، اپنی سوچ اور اپنے جذبات سمیت خود کو محفوظ محسوس کر سکے۔
-
-یاد رکھیے! عورت کو پھول دینا خوبصورت عمل ہے، مگر اُس کی عزت کو کبھی مرجھانے نہ دینا اُس سے کہیں زیادہ خوبصورت محبت ہے۔ ❤️‍🩹
-
-آیت سیّد ᥫ᭡`
-        }
-      ],
-      "محبت": [
-        {
-          topic: "قربت، اعتماد اور دلکشی",
-          caption: `عورت بہت دلکش ہے، اُس کا لمس، اُس کی قربت اور اُس کا حسن۔۔۔ سب اپنی جگہ ایک الگ ہی کیفیت رکھتے ہیں۔ ❤️‍🔥🌹
-اُس کے وجود میں نہ جانے کیسی کشش ہے کہ اُس کی موجودگی عام سے لمحوں کو بھی خاص بنا دیتی ہے۔ اُس کے ہاتھوں کی نرمی، اُس کے لہجے کی مٹھاس، اُس کی آنکھوں کی شرارت اور اُس کے قریب ہونے کا احساس، دل میں ایسی خوشی جگاتا ہے جسے لفظوں میں سمیٹنا آسان نہیں۔
-عورت کی قربت صرف فاصلے مٹانے کا نام نہیں، یہ دو دلوں کے درمیان اعتماد، اپنائیت اور محبت کے گہرے احساس کا نام ہے۔ جب وہ کسی اپنے کے قریب ہوتی ہے تو اُس کا لمس بھی محبت کی زبان بولتا ہے، اُس کی خاموشی بھی ہزاروں باتیں کہتی ہے اور اُس کی مسکراہٹ بھی دل کو بےاختیار اپنا بنا لیتی ہے۔ 🫀
-مگر عورت کا حسن صرف اُس کے جسم تک محدود نہیں؛ اُس کی شخصیت، اُس کی سوچ، اُس کی نزاکت، اُس کا وقار اور اُس کے جذبات بھی اُتنے ہی دلکش ہیں۔ جو شخص اُس کے وجود کو محبت کے ساتھ اُس کی عزت سمیت قبول کرتا ہے، وہی اُس کی خوبصورتی کی اصل گہرائی سمجھ سکتا ہے۔
-عورت کی قربت ایک حسین احساس ہے، مگر اُس کی رضامندی، اُس کا اعتماد اور اُس کی عزت اُس احساس کو بےمثال بنا دیتے ہیں۔ ❤️
-آیت سیّد ᥫ᭡`
-        },
-        {
-          topic: "داستانِ حسن",
-          caption: `اپنی محبوبہ سے یہ مت کہنا کہ وہ حسین ہے، بلکہ اُسے یہ احساس دلانا کہ اُس کے وجود کا ہر ذرّہ اپنی جگہ ایک الگ داستانِ حسن رکھتا ہے۔ اُس کی تربیت، اُس کا اندازِ گفتگو، اُس کے لہجے کی نرمی، اُس کی مسکراہٹ اور اُس کے برتاؤ میں ایسی دلکشی ہے جو محض دیکھنے سے نہیں، محسوس کرنے سے سمجھ آتی ہے۔ ❤️🌹
-
-کیونکہ حسن صرف چہرے کے خدوخال کا نام نہیں ہوتا، کبھی کسی کی گفتگو انسان کو اپنا اسیر بنا لیتی ہے، کبھی اُس کا شائستہ انداز دل میں جگہ بنا لیتا ہے، اور کبھی اُس کی چھوٹی چھوٹی عادتیں محبت کو ایک نئی معنویت دے دیتی ہیں۔
-
-تم اپنی محبوبہ کو بتاؤ کہ اُس کی خوبصورتی صرف اُس کے چہرے پر نہیں ٹھہرتی، بلکہ اُس کے کردار، اُس کی سوچ، اُس کے سلیقے اور اُس کی شخصیت کے ہر پہلو سے جھلکتی ہے۔ وہ جب بولتی ہے تو لفظ بھی خوبصورت لگنے لگتے ہیں، جب مسکراتی ہے تو ماحول میں بہار اتر آتی ہے، اور جب خاموش رہتی ہے تو اُس کی خاموشی بھی کسی مکمل نظم جیسی محسوس ہوتی ہے۔ 🫀
-
-اُسے صرف حسین مت کہو، اُسے یہ بتاؤ کہ اُس کی پوری ذات تمہارے لیے حسن، تہذیب اور محبت کا ایسا امتزاج ہے جس کی مثال تمہیں کہیں اور نہیں ملتی۔ ❤️‍🔥
-
-آیت سیّد ᥫ᭡`
-        },
-        {
-          topic: "ہر دھڑکن میں آباد",
-          caption: `اگر میں پوری کی پوری زمین کا چکر بھی لگا لوں، اللہ گواہ ہے، مجھے کوئی بھی چیز تم سے غافل نہیں کر سکتی۔۔۔ ❤️🫀
-
-تم میرے دل میں اس طرح آباد ہو کہ فاصلے تمہاری موجودگی کو کم نہیں کر سکتے، مصروفیت تمہاری یاد کو مٹا نہیں سکتی، اور دنیا کی کوئی خوبصورتی تمہارے حسنِ احساس کا مقابلہ نہیں کر سکتی۔ میں کسی بھی شہر، کسی بھی ملک، کسی بھی راستے پر چلی جاؤں، میرے اندر ایک جگہ ہمیشہ تمہارے نام سے روشن رہتی ہے۔
-
-تم میری سماعتوں میں دل بن کر دھڑکتے ہو؛ تمہاری آواز میرے اندر ایسی گونج پیدا کرتی ہے جسے خاموشی بھی ختم نہیں کر سکتی۔ کبھی کسی اجنبی کے لہجے میں تمہاری جھلک محسوس ہوتی ہے، کبھی کسی خوبصورت منظر کو دیکھ کر تم یاد آ جاتے ہو، اور کبھی بغیر کسی وجہ کے میرا دل تمہاری طرف کھنچنے لگتا ہے۔ 🌹
-
-تمہیں بھولنے کے لیے شاید پوری دنیا دیکھنی پڑے، مگر پوری دنیا دیکھ لینے کے بعد بھی میرا دل تمہیں ہی دیکھنے کی خواہش کرے گا۔ کیونکہ تم کوئی ایسی یاد نہیں جسے وقت مٹا دے، تم وہ احساس ہو جو وقت کے ساتھ میرے اندر مزید گہرا ہوتا جاتا ہے۔
-
-میں جہاں بھی رہوں، جس راستے پر بھی چلوں، میری روح کا سفر ہمیشہ تمہاری طرف ہی رہے گا؛ کیونکہ تم میرے دل میں نہیں، میری ہر دھڑکن میں آباد ہو۔ ❤️‍🔥
-
-آیت سیّد ᥫ᭡`
-        }
-      ],
-      "رومانیت": [
-        {
-          topic: "رومانیت",
-          caption: ""
-        }
-      ],
-      "حدت لمس": [
-        {
-          topic: "حدت لمس",
-          caption: ""
-        }
-      ],
-      "ناولز": [
-        {
-          topic: "ناولز",
-          caption: ""
-        }
-      ]
-    };
-
-    const bookFeedbacks = {
-      "محبت": [],
-      "رومانیت": [],
-      "حدت لمس": [],
-      "ناولز": [],
-      "عورت": []
-    };
-
-    let currentBookName = "عورت";
-    let currentPageIndex = 0;
-
-    function openBookPages(bookName) {
-      if (!is300Paid) {
-        const notice = document.getElementById("lockNotice");
-        const panel = document.getElementById("paymentPanel");
-        notice.style.display = "block";
-        panel.style.display = "block";
-        document.getElementById("membershipSection").scrollIntoView({ behavior: "smooth" });
-        return;
-      }
-
-      currentBookName = bookName;
-      currentPageIndex = 0;
-      document.getElementById("activeBookHeading").textContent = bookName;
-      document.getElementById("feedbackHeading").textContent = bookName + " — فیڈبیک";
-      document.getElementById("bookReaderOverlay").style.display = "block";
-      renderCurrentPage();
-      renderFeedbacks();
-      document.getElementById("bookReaderOverlay").scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-
-    function renderCurrentPage() {
-      const pages = booksPagesData[currentBookName] || [];
-      const box = document.getElementById("singlePageBox");
-      box.innerHTML = "";
-
-      if (pages.length === 0) return;
-
-      const pageObj = pages[currentPageIndex];
-      const pageNumber = currentPageIndex + 1;
-
-      const sheet = document.createElement("div");
-      sheet.className = "book-page-sheet";
-      sheet.onclick = flipToNextPage;
-      sheet.innerHTML = `
-        <div class="page-topic-header">
-          <div class="page-topic-title">${pageObj.topic}</div>
-        </div>
-        <div class="page-caption-body">${pageObj.caption}</div>
-        <div class="page-footer-num">${pageNumber}</div>
-      `;
-
-      box.appendChild(sheet);
-    }
-
-    function flipToNextPage() {
-      const pages = booksPagesData[currentBookName] || [];
-      if (pages.length === 0) return;
-      currentPageIndex = (currentPageIndex + 1) % pages.length;
-      renderCurrentPage();
-    }
-
-    function closeBookReader() {
-      document.getElementById("bookReaderOverlay").style.display = "none";
-    }
-
-    function addBookFeedback() {
-      const nameEl = document.getElementById("fbNameInput");
-      const textEl = document.getElementById("fbTextInput");
-      const name = nameEl.value.trim() || "قاری";
-      const text = textEl.value.trim();
-
-      if (!text) return;
-
-      bookFeedbacks[currentBookName].unshift({ name, text });
-      nameEl.value = "";
-      textEl.value = "";
-      renderFeedbacks();
-    }
-
-    function renderFeedbacks() {
-      const list = document.getElementById("feedbackList");
-      const items = bookFeedbacks[currentBookName] || [];
-      list.innerHTML = "";
-
-      items.forEach((fb) => {
-        const div = document.createElement("div");
-        div.className = "feedback-item";
-        div.innerHTML = `<div class="feedback-author">${fb.name}</div><div class="feedback-text">${fb.text}</div>`;
-        list.appendChild(div);
-      });
-    }
-
-    function toggleStoryForm() {
-      const form = document.getElementById("storySubmitForm");
-      form.style.display = form.style.display === "block" ? "none" : "block";
-    }
-
-    function submitCustomStory() {
-      const writer = document.getElementById("writerName").value.trim();
-      const book = document.getElementById("targetBookSelect").value;
-      const title = document.getElementById("storyTitleInput").value.trim();
-      const body = document.getElementById("storyBodyInput").value.trim();
-      const ssFile = document.getElementById("storySsInput").files[0];
-      const status = document.getElementById("storyStatusMsg");
-
-      status.style.display = "block";
-      if (!writer || !title || !body) {
-        status.textContent = "براہ کرم نام، عنوان اور اپنی تحریر/کہانی لکھیں۔";
-        return;
-      }
-
-      status.textContent =
-        `"${title}" (${book}) کی درخواست تیار ہے۔ تصدیق کے لیے WhatsApp پر اسکرین شاٹ بھیجیں۔` +
-        (ssFile ? ` اسکرین شاٹ: ${ssFile.name}` : "");
-    }
-  </script>
-</body>
-</html>
+          caption: `عزت عورت کو دیے جانے والے تحفوں میں سب سے قیمتی تحفہ ہوتی ہے، کیونکہ زیورات اُس کے حسن کو سنوار سکتے ہیں، پھول اُس کے چہرے پر مسکراہٹ لا سکتے ہیں اور قیمتی تحائف اُس کے دل کو خوش کر سکتے ہیں، مگر عزت اُس کے پورے وجود کو محبت اور
