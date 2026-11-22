@@ -207,6 +207,19 @@
       filter: brightness(1.08);
     }
 
+    .btn-lock-test {
+      background: #2b2436;
+      color: #ffe082;
+      border: 1px solid rgba(255, 213, 79, 0.35);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 12px;
+      margin-right: 8px;
+    }
+
     .btn-wa {
       background: linear-gradient(90deg, #25d366, #128c7e);
       color: #fff;
@@ -322,7 +335,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
       font-weight: bold;
       box-shadow:
         -6px 10px 22px rgba(0, 0, 0, 0.65),
@@ -346,6 +359,13 @@
     .cover-3d .book-title-3d {
       font-size: 1.15rem;
       text-align: center;
+    }
+
+    .book-lock-badge {
+      font-size: 0.85rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.32);
     }
 
     .c-love {
@@ -496,356 +516,4 @@
     .book-feedback-box h4 {
       color: #ffd54f;
       margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    .input-field,
-    .textarea-field,
-    .select-field {
-      width: 100%;
-      background: #231d2e;
-      color: #fff;
-      border: 1px solid rgba(255, 213, 79, 0.3);
-      border-radius: 9px;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-      font-size: 0.98rem;
-    }
-
-    .textarea-field {
-      min-height: 82px;
-      resize: vertical;
-    }
-
-    .feedback-list {
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .feedback-item {
-      background: #1d1826;
-      border-right: 4px solid #ffd54f;
-      border-radius: 8px;
-      padding: 10px 14px;
-    }
-
-    .feedback-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .feedback-author {
-      color: #ffd54f;
-      font-weight: bold;
-      font-size: 0.92rem;
-    }
-
-    .feedback-time {
-      color: #a99bb8;
-      font-size: 0.8rem;
-    }
-
-    .feedback-text {
-      color: #ece6f5;
-      font-size: 0.98rem;
-      margin-top: 4px;
-    }
-
-    /* باہر 500 روپے میں اپنی کہانی / اپنے الفاظ پوسٹ کروانے کا سیکشن */
-    .custom-post-banner {
-      margin-top: 40px;
-      background: linear-gradient(135deg, #241326 0%, #16121f 65%, #1f1712 100%);
-      border: 1.5px solid #ffd54f;
-      border-radius: 18px;
-      padding: 30px 22px;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
-    }
-
-    .custom-post-banner h2 {
-      color: #ffd54f;
-      font-size: 1.75rem;
-      margin-bottom: 8px;
-    }
-
-    .price-pill {
-      display: inline-block;
-      background: #ffd54f;
-      color: #141008;
-      font-weight: bold;
-      padding: 4px 16px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
-
-    .story-submit-form {
-      display: none;
-      margin-top: 22px;
-      text-align: right;
-      background: #1b1624;
-      border: 1px solid rgba(255, 213, 79, 0.4);
-      border-radius: 14px;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <!-- رومانٹک کتابی منظر + رنگین کتابوں کا اکٹھا ہونا -->
-    <section id="bookStage" class="book-stage">
-      <svg class="romantic-art" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fff3c4" />
-            <stop offset="50%" stop-color="#ffd54f" />
-            <stop offset="100%" stop-color="#b8860b" />
-          </linearGradient>
-          <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ff758f" />
-            <stop offset="100%" stop-color="#a4133c" />
-          </linearGradient>
-        </defs>
-        <path d="M130 14 A18 18 0 1 0 146 38 A14 14 0 1 1 130 14 Z" fill="url(#goldGrad)" />
-        <circle cx="95" cy="24" r="2.2" fill="#ffe082" />
-        <circle cx="168" cy="22" r="2.5" fill="#ffe082" />
-        <circle cx="182" cy="38" r="1.8" fill="#ffd54f" />
-        <path d="M45 112 Q88 92 130 112 L130 62 Q88 45 45 64 Z" fill="#2c1d2e" stroke="url(#goldGrad)" stroke-width="2.5" />
-        <path d="M215 112 Q172 92 130 112 L130 62 Q172 45 215 64 Z" fill="#241726" stroke="url(#goldGrad)" stroke-width="2.5" />
-        <path d="M52 106 Q90 88 128 106" fill="none" stroke="#ffe082" stroke-width="1.3" opacity="0.75" />
-        <path d="M208 106 Q170 88 132 106" fill="none" stroke="#ffe082" stroke-width="1.3" opacity="0.75" />
-        <path d="M130 88 C122 78, 108 82, 114 93 C119 101, 130 106, 130 106 C130 106, 141 101, 146 93 C152 82, 138 78, 130 88 Z" fill="url(#roseGrad)" />
-      </svg>
-
-      <div class="books-stack">
-        <div class="color-book book-gold">
-          <div class="book-pages"></div>
-          <div class="book-art">📖✨</div>
-          <div class="book-label">آیت سیّد</div>
-        </div>
-        <div class="color-book book-ruby">
-          <div class="book-pages"></div>
-          <div class="book-art">🌹❤️</div>
-          <div class="book-label">عشق و وفا</div>
-        </div>
-        <div class="color-book book-emerald">
-          <div class="book-pages"></div>
-          <div class="book-art">🌙🕯️</div>
-          <div class="book-label">رازِ دل</div>
-        </div>
-        <div class="color-book book-royal">
-          <div class="book-pages"></div>
-          <div class="book-art">💞🪶</div>
-          <div class="book-label">شبِ سخن</div>
-        </div>
-      </div>
-
-      <div class="gold-title">لفظوں کی سنہری کتاب</div>
-      <p class="gold-sub">جہاں ہر ورق میں جذبات، راز اور کہانیاں سانس لیتی ہیں</p>
-      <div class="scroll-hint">⬇ نیچے اسکرول کریں ⬇</div>
-    </section>
-
-    <!-- 300 روپے فیس اور پیمنٹ -->
-    <section id="membershipSection" class="membership-section">
-      <h2 style="color: #ffd54f;">مکمل رسائی کے لیے ممبرشپ</h2>
-      <p style="margin-top: 8px; color: #ddd;">پہلی بار اوپن کرنے پر 300 روپے ادائیگی کے بعد تمام کتابیں ان لاک ہو جائیں گی</p>
-
-      <button class="btn-gold" onclick="openPayment()">300 روپے ادائیگی کی تفصیل دیکھیں</button>
-
-      <div id="paymentPanel" class="payment-panel">
-        <h3 style="color: #ffd54f;">ادائیگی کے اکاؤنٹس (300 روپے)</h3>
-        <div class="accounts">
-          <div class="acc-box">
-            <h3>EasyPaisa</h3>
-            <p><strong>نمبر:</strong> 0307-4948312</p>
-            <p><strong>نام:</strong> اقرا ارشاد</p>
-          </div>
-          <div class="acc-box">
-            <h3>JazzCash</h3>
-            <p><strong>نمبر:</strong> 0307-4948312</p>
-            <p><strong>نام:</strong> اقرا ارشاد</p>
-          </div>
-        </div>
-
-        <div class="confirm-box">
-          <button class="btn-gold" onclick="confirm300Payment()">300 روپے ادائیگی مکمل کر لی — کتابیں کھولیں</button>
-          <div id="statusMsg" class="status-msg"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5 کتابیں -->
-    <section class="topics-box">
-      <h2>منتخب 5 کتابیں</h2>
-      <div id="lockNotice" class="lock-notice">
-        پہلے 300 روپے ادائیگی مکمل کریں، اس کے بعد تمام کتابیں ان لاک ہو جائیں گی۔
-      </div>
-
-      <div class="books-3d-grid">
-        <div class="card-3d-book" onclick="openBookPages('محبت')">
-          <div class="cover-3d c-love">
-            <div class="spine-line"></div>
-            <div class="book-title-3d">محبت</div>
-          </div>
-        </div>
-
-        <div class="card-3d-book" onclick="openBookPages('رومانیت')">
-          <div class="cover-3d c-romance">
-            <div class="spine-line"></div>
-            <div class="book-title-3d">رومانیت</div>
-          </div>
-        </div>
-
-        <div class="card-3d-book" onclick="openBookPages('حدت لمس')">
-          <div class="cover-3d c-touch">
-            <div class="spine-line"></div>
-            <div class="book-title-3d">حدت لمس</div>
-          </div>
-        </div>
-
-        <div class="card-3d-book" onclick="openBookPages('ناولز')">
-          <div class="cover-3d c-novels">
-            <div class="spine-line"></div>
-            <div class="book-title-3d">ناولز</div>
-          </div>
-        </div>
-
-        <div class="card-3d-book" onclick="openBookPages('عورت')">
-          <div class="cover-3d c-woman">
-            <div class="spine-line"></div>
-            <div class="book-title-3d">عورت</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ٹچ کرنے سے پلٹنے والا صفحہ + ہر کتاب کا اپنا فیڈبیک -->
-      <div id="bookReaderOverlay" class="book-reader-overlay">
-        <div class="book-top-bar">
-          <h3 id="activeBookHeading">عورت</h3>
-          <button class="ctrl-btn" onclick="closeBookReader()">✕</button>
-        </div>
-
-        <div id="singlePageBox"></div>
-
-        <div class="book-feedback-box">
-          <h4 id="feedbackHeading">فیڈبیک</h4>
-          <input id="fbNameInput" class="input-field" type="text" placeholder="آپ کا نام" />
-          <textarea id="fbTextInput" class="textarea-field" placeholder="اس کتاب کے بارے میں اپنا فیڈبیک لکھیں..."></textarea>
-          <button class="ctrl-btn" onclick="addBookFeedback()">فیڈبیک پوسٹ کریں</button>
-          <div id="feedbackList" class="feedback-list"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- باہر 500 روپے میں اپنی کہانی / اپنے الفاظ پوسٹ کروانے کا سیکشن -->
-    <section class="custom-post-banner">
-      <div class="price-pill">500 روپے</div>
-      <h2>کوئی بھی اپنی خود کی کہانی یا اپنے الفاظ اس میں پوسٹ کروا سکتا ہے</h2>
-      <p style="color: #e6dcef; margin-top: 6px;">
-        اپنی تحریر، کہانی یا الفاظ 500 روپے میں پوسٹ کروائیں
-      </p>
-      <button class="btn-gold" onclick="toggleStoryForm()">500 روپے میں پوسٹ کروائیں</button>
-
-      <div id="storySubmitForm" class="story-submit-form">
-        <h3 style="color: #ffd54f; margin-bottom: 12px;">اپنی کہانی / اپنے الفاظ جمع کروائیں (500 روپے)</h3>
-        <input id="writerName" class="input-field" type="text" placeholder="آپ کا نام یا قلمی نام" />
-        <select id="targetBookSelect" class="select-field">
-          <option value="محبت">محبت</option>
-          <option value="رومانیت">رومانیت</option>
-          <option value="حدت لمس">حدت لمس</option>
-          <option value="ناولز">ناولز</option>
-          <option value="عورت">عورت</option>
-        </select>
-        <input id="storyTitleInput" class="input-field" type="text" placeholder="تحریر یا کہانی کا نام" />
-        <textarea id="storyBodyInput" class="textarea-field" placeholder="یہاں اپنی کہانی یا اپنے الفاظ لکھیں..."></textarea>
-
-        <div class="accounts">
-          <div class="acc-box">
-            <h3>EasyPaisa</h3>
-            <p><strong>نمبر:</strong> 0307-4948312</p>
-            <p><strong>نام:</strong> اقرا ارشاد</p>
-          </div>
-          <div class="acc-box">
-            <h3>JazzCash</h3>
-            <p><strong>نمبر:</strong> 0307-4948312</p>
-            <p><strong>نام:</strong> اقرا ارشاد</p>
-          </div>
-        </div>
-
-        <label for="storySsInput"><strong>500 روپے ادائیگی کا اسکرین شاٹ:</strong></label>
-        <input id="storySsInput" type="file" accept="image/*" style="margin: 8px 0 14px; display: block; color: #ddd;" />
-        <button class="btn-gold" onclick="submitCustomStory()">درخواست جمع کروائیں</button>
-        <button class="btn-wa" onclick="sendScreenshotWhatsApp('500')">WhatsApp پر اسکرین شاٹ بھیجیں</button>
-        <div id="storyStatusMsg" class="status-msg"></div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    const WHATSAPP_NUMBER = "923074948312";
-    const UNLOCK_STORAGE_KEY = "ayat_syed_300_unlocked";
-    const FEEDBACK_STORAGE_KEY = "ayat_syed_book_feedbacks_v1";
-    const bookStage = document.getElementById("bookStage");
-
-    let is300Paid = localStorage.getItem(UNLOCK_STORAGE_KEY) === "true";
-
-    if (is300Paid) {
-      const status = document.getElementById("statusMsg");
-      status.style.display = "block";
-      status.textContent = "آپ کی 300 روپے ممبرشپ فعال ہے، کتابیں ان لاک ہیں۔";
-    }
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 120) {
-        bookStage.classList.add("condensed");
-      } else {
-        bookStage.classList.remove("condensed");
-      }
-    });
-
-    function openPayment() {
-      const panel = document.getElementById("paymentPanel");
-      panel.style.display = panel.style.display === "block" ? "none" : "block";
-    }
-
-    function confirm300Payment() {
-      const status = document.getElementById("statusMsg");
-      const notice = document.getElementById("lockNotice");
-
-      is300Paid = true;
-      localStorage.setItem(UNLOCK_STORAGE_KEY, "true");
-      notice.style.display = "none";
-      status.style.display = "block";
-      status.textContent = "300 روپے ادائیگی مکمل ہو گئی۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
-    }
-
-    function sendScreenshotWhatsApp(amount) {
-      let msg = `السلام علیکم! میں نے ${amount} روپے ادائیگی کر دی ہے، اسکرین شاٹ بھیج رہا/رہی ہوں۔`; if (amount === "500") { const writer = document.getElementById("writerName").value.trim(); const book = document.getElementById("targetBookSelect").value; const title = document.getElementById("storyTitleInput").value.trim(); if (writer \vert{}\vert{} title) { msg += `\nنام: ${writer || "—"}\nکتاب: ${book}\nعنوان: ${title || "—"}`;
-        }
-      }
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-      window.open(url, "_blank");
-    }
-
-    const booksPagesData = {
-      "عورت": [
-        {
-          topic: "عورت کا حسن، لمس اور عزت",
-          caption: `عورت کے وجود کا ہر حصہ محبت اور احترام کے قابل ہے، اُس کے حسن کا کوئی ایک پہلو نہیں بلکہ اُس کی پوری ذات اپنی جگہ ایک مکمل خوبصورتی رکھتی ہے۔ شاید اسی لیے عورت کے قدموں کو بھی محبت سے چوما جاتا ہے، اُس کے ہاتھوں کو بھی عقیدت سے تھاما جاتا ہے اور اُس کے وجود کے ہر حصے کو چاہت کی نگاہ سے دیکھا جاتا ہے۔ ❤️🌹
-
-مگر میرے نزدیک عورت کے حسن کی اصل قدر صرف اُسے چاہنے میں نہیں، بلکہ اُسے عزت دینے میں ہے۔ اُس کے وجود کو اپنی خواہش نہیں، اپنی محبت کی امانت سمجھنے میں ہے۔ اُس کے لمس میں اپنائیت، اُس کی قربت میں احترام اور اُس کے ہر احساس میں اُس کی رضامندی کو اہمیت دینے میں ہے۔
-
-ایک مرد جب اپنی شریکِ حیات کے قدم محبت سے چومتا ہے تو یہ صرف ایک لمس نہیں ہوتا، بلکہ اُس کے لیے اپنی محبت، اپنائیت اور قدر کا اظہار ہوتا ہے۔ اور عورت کے لیے بھی اس سے بڑھ کر خوبصورت احساس کیا ہوگا کہ جس شخص کو اُس نے اپنا ہم سفر چنا، وہ اُس کی ذات کے ہر پہلو کو محبت اور عزت سے قبول کرے۔ 🫀
-
-عورت کے قدم چومنے کی خوبصورتی تب ہے جب وہ محبت حلال رشتے میں ہو، جہاں چاہت کے ساتھ وفاداری، قربت کے ساتھ احترام اور ہر لمس کے ساتھ رضامندی بھی موجود ہو۔
-
-کیونکہ عورت صرف چاہے جانے کے قابل نہیں، عزت سے نبھائے جانے کے قابل بھی ہے۔ ❤️‍🔥
-
-آیت سیّد ᥫ᭡`
-        },
-        {
-          topic: "عزت سب سے قیمتی تحفہ",
-          caption: `عزت عورت کو دیے جانے والے تحفوں میں سب سے قیمتی تحفہ ہوتی ہے، کیونکہ زیورات اُس کے حسن کو سنوار سکتے ہیں، پھول اُس کے چہرے پر مسکراہٹ لا سکتے ہیں اور قیمتی تحائف اُس کے دل کو خوش کر سکتے ہیں، مگر عزت اُس کے پورے وجود کو محبت اور
+      font-size
