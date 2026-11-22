@@ -645,7 +645,7 @@
     <!-- 300 روپے فیس اور پیمنٹ -->
     <section id="membershipSection" class="membership-section">
       <h2 style="color: #ffd54f;">مکمل رسائی کے لیے ممبرشپ</h2>
-      <p style="margin-top: 8px; color: #ddd;">صرف 300 روپے ادا کر کے اسکرین شاٹ جمع کروائیں اور کتابیں کھولیں</p>
+      <p style="margin-top: 8px; color: #ddd;">پہلی بار اوپن کرنے پر 300 روپے ادائیگی کے بعد تمام کتابیں ان لاک ہو جائیں گی</p>
 
       <button class="btn-gold" onclick="openPayment()">300 روپے ادائیگی کی تفصیل دیکھیں</button>
 
@@ -665,9 +665,9 @@
         </div>
 
         <div class="upload-area">
-          <label for="ssInput"><strong>300 روپے ادائیگی کے بعد اسکرین شاٹ یہاں لگائیں:</strong></label>
+          <label for="ssInput"><strong>اسکرین شاٹ (اختیاری — نہ بھی دیں تو بھی مسئلہ نہیں):</strong></label>
           <input id="ssInput" type="file" accept="image/*" />
-          <button class="btn-gold" onclick="submitScreenshot()">جمع کروائیں</button>
+          <button class="btn-gold" onclick="confirm300Payment()">300 روپے ادائیگی مکمل کریں</button>
           <button class="btn-wa" onclick="sendScreenshotWhatsApp('300')">WhatsApp پر اسکرین شاٹ بھیجیں</button>
           <div id="statusMsg" class="status-msg"></div>
         </div>
@@ -678,7 +678,7 @@
     <section class="topics-box">
       <h2>منتخب 5 کتابیں</h2>
       <div id="lockNotice" class="lock-notice">
-        کتابیں کھولنے کے لیے پہلے 300 روپے ادائیگی کر کے اسکرین شاٹ لگائیں اور <strong>جمع کروائیں</strong> دبائیں۔
+        پہلے 300 روپے ادائیگی مکمل کریں، اس کے بعد تمام کتابیں ان لاک ہو جائیں گی۔
       </div>
 
       <div class="books-3d-grid">
@@ -783,8 +783,16 @@
 
   <script>
     const WHATSAPP_NUMBER = "923074948312";
+    const UNLOCK_STORAGE_KEY = "ayat_syed_300_unlocked";
     const bookStage = document.getElementById("bookStage");
-    let is300Paid = false;
+
+    let is300Paid = localStorage.getItem(UNLOCK_STORAGE_KEY) === "true";
+
+    if (is300Paid) {
+      const status = document.getElementById("statusMsg");
+      status.style.display = "block";
+      status.textContent = "آپ کی 300 روپے ممبرشپ فعال ہے، کتابیں ان لاک ہیں۔";
+    }
 
     window.addEventListener("scroll", () => {
       if (window.scrollY > 120) {
@@ -799,23 +807,25 @@
       panel.style.display = panel.style.display === "block" ? "none" : "block";
     }
 
-    function submitScreenshot() {
+    function confirm300Payment() {
       const input = document.getElementById("ssInput");
       const status = document.getElementById("statusMsg");
       const notice = document.getElementById("lockNotice");
-      status.style.display = "block";
-
-      if (!input.files || input.files.length === 0) {
-        status.textContent = "براہ کرم پہلے 300 روپے ادائیگی کا اسکرین شاٹ منتخب کریں۔";
-        return;
-      }
 
       is300Paid = true;
+      localStorage.setItem(UNLOCK_STORAGE_KEY, "true");
       notice.style.display = "none";
-      status.textContent =
-        "اسکرین شاٹ (" +
-        input.files[0].name +
-        ") جمع کروا دیا گیا ہے۔ اب آپ کتابیں کھول سکتے ہیں۔";
+      status.style.display = "block";
+
+      if (input.files && input.files.length > 0) {
+        status.textContent =
+          "300 روپے ادائیگی مکمل ہو گئی (" +
+          input.files[0].name +
+          ")۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
+      } else {
+        status.textContent =
+          "300 روپے ادائیگی مکمل ہو گئی۔ تمام کتابیں ان لاک ہو گئی ہیں۔";
+      }
     }
 
     function sendScreenshotWhatsApp(amount) {
